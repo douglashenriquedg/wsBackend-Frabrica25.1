@@ -3,9 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>catalog.a</title>
-</head>
-<body>
+    <meta name="description" content="Catalogo de filme, veja detalhes em filmes...bla bla bla">
+    <title>Catalog.A</title>
     
-</body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: white;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #1e1e1e;
+        }
+
+        .logo a {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .sombra{
+            background-color: rgb(88, 88, 88);
+            border-radius: 100%;
+        }
+
+        .sombradasombra{
+            border-radius: 100%;
+            background-color: transparent;
+            box-shadow: -4px -3px 1px orange;
+        }
+
+        .ponto{
+            background-color: transparent;
+            border-radius: 100%;
+            box-shadow: 4px 0px 0px red;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+            
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            
+        }
+
+        .barra-busca {
+            display: flex;
+            align-items: center;
+        }
+
+        .barra-busca input {
+            padding: 8px;
+            width: 200px;
+            border-radius: 5px;
+            border: none;
+            margin-right: 5px;
+        }
+
+        .barra-busca button {
+            padding: 8px 12px;
+            border: none;
+            background-color: orange;
+            color: white;
+            border-radius: 0 3px 20px 0;
+            cursor: pointer;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        /* Caixa ajustada para exibir os filmes lado a lado */
+        .caixa {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .filme-card {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .filme-card img {
+            
+            width: 100%;
+            max-width: 180px;
+            border-radius: 10px;
+        }
+
+    </style>
+    
+</head>
+    
+<body>
+
+        <!-- barra de navegação -->
+        <nav>
+            <div class="logo">
+                <div class="sombra">            <!--Aprendir com papai Herriot-->
+                    <div class="sombradasombra">
+                        <a href="#">Catalog.<span class="ponto">A<span></a>
+                    </div>
+                </div>
+                
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="#">Destaque</a></li>
+                <li><a href="#">Principais</a></li>
+                <li><a href="#">Favoritos</a></li>
+            
+            </ul>
+
+
+            <p>pesquise por um filme real ou  </p><a href="{% url 'filme-list' %}">crie seu proprio filme</a>
+
+
+            <!-- aqui é a barra de busca -->
+            <div class="barra-busca">
+                
+                <form method="GET">
+                    
+                    <input type="text" name="filme" placeholder="Pesquisar..." value="{{ busca }}">
+                    <button type="submit">Buscar</button>
+                
+                </form>
+            
+            </div>
+        
+        </nav>
+
+        <!--infelizmente as imagens sao estaticas-->
+
+         
+        <div class="container">
+            
+            {% if filme %}
+                
+            <div class="filme-card">
+                    
+                    <h2 class="titulofilme">{{ filme.Title }}</h2>
+                    <br>
+                    <p class="anofilme"><strong>Ano:</strong> {{ filme.Year }}</p>
+                    <br>
+                    <p class="diretorfilme"><strong>Diretor:</strong> {{ filme.Director }}</p>
+                    <br>
+                    <p class="plotfilme"><strong>Sinopse:</strong> {{ filme.Plot }}</p>
+                    <br>
+                    <img class="capafilme" src="{{ filme.Poster }}" alt="Poster de {{ filme.Title }}">
+
+                </div>
+
+            {% elif busca %}
+                
+                <p>Nenhum resultado encontrado para "{{ busca }}".</p>
+            
+            {% endif %}
+            
+            <div class="filme-card">
+                <h2>Gladiador</h2>
+                <p><strong>Ano:</strong> 2000</p>
+                <p><strong>Diretor:</strong> Ridley Scott</p>
+                <img src="https://m.media-amazon.com/images/I/71ZW5P+6DzL._AC_SY679_.jpg" alt="Gladiador">
+            </div>
+        
+            <div class="filme-card">
+                <h2>Gladiador</h2>
+                <p><strong>Ano:</strong> 2000</p>
+                <p><strong>Diretor:</strong> Ridley Scott</p>
+                <img src="https://m.media-amazon.com/images/I/71ZW5P+6DzL._AC_SY679_.jpg" alt="Gladiador">
+            </div>
+            <div class="filme-card">
+                <h2>Gladiador</h2>
+                <p><strong>Ano:</strong> 2000</p>
+                <p><strong>Diretor:</strong> Ridley Scott</p>
+                <img src="https://m.media-amazon.com/images/I/71ZW5P+6DzL._AC_SY679_.jpg" alt="Gladiador">
+            </div>
+            <div class="filme-card">
+                <h2>Gladiador</h2>
+                <p><strong>Ano:</strong> 2000</p>
+                <p><strong>Diretor:</strong> Ridley Scott</p>
+                <img src="https://m.media-amazon.com/images/I/71ZW5P+6DzL._AC_SY679_.jpg" alt="Gladiador">
+            </div>
+            <div class="filme-card">
+                <h2>etc...</h2>
+                <p><strong>Ano:</strong> ...</p>
+                <p><strong>Diretor:</strong> ...</p>
+                <img src="..." alt="...">
+            </div>
+
+    </body>
+
 </html>

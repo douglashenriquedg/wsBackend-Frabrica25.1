@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class catalogo(models.Model):
+class Filme(models.Model):
     titulo = models.CharField(max_length=100)
     sinopse = models.TextField(max_length=255)
     genero = models.CharField(max_length=255)
@@ -19,4 +19,8 @@ class catalogo(models.Model):
     )
     faixa_etaria = models.CharField(max_length=2, choices=faixa_etaria_CHOICES)
 
+def __str__(self):
+    return self.titulo
+
+    
 # Create your models here.

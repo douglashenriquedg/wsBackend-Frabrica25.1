@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+                /* Estilo global */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Título */
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        /* Lista de filmes */
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        li {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            display: fl
+        }
+
+
+
+    </style>
+
+<body>
+    <!-- filmes/filme_list.html -->
+<h1>Lista de Filmes</h1>
+<ul>
+    {% for filme in filmes %}
+        <li>{{ filme.titulo }} - <a href="{% url 'filme-update' filme.id %}">Editar</a> | <a href="{% url 'filme-delete' filme.id %}">Excluir</a></li>
+    {% endfor %}
+</ul>
+<a href="{% url 'filme-create' %}">Adicionar Novo Filme</a>
+
+</body>
+</html>
