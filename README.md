@@ -1,6 +1,12 @@
 #Documentação do Projeto Django - CRUD de Filmes
 
-'''📌 Visão Geral'''
+##📌 Visão Geral
+
+
+##API usada
+    apI: the open movie database;(OMDb)
+
+
 
 Este projeto é um sistema de cadastro de filmes, onde é possível listar, adicionar, editar e excluir filmes. Além disso, há uma funcionalidade de busca de filmes utilizando um serviço externo.
 
@@ -28,7 +34,7 @@ templates/: Armazena os arquivos HTML para renderização.
 
 omdb_service.py: Módulo externo para buscar informações de filmes.
 
-'''🌍 URLs do Aplicativo (urls.py)'''
+##🌍 URLs do Aplicativo (urls.py)
 
 from django.urls import path
 from .views import FilmeListView, FilmeCreateView, FilmeUpdateView, FilmeDeleteView, index
@@ -41,7 +47,7 @@ urlpatterns = [
     path('excluir/<int:pk>/', FilmeDeleteView.as_view(), name='filme-delete')  # Excluir filme
 ]
 
-'''🔗 Rotas e Suas Funções'''
+##🔗 Rotas e Suas Funções
 
 index: Página inicial com busca de filmes.
 
@@ -53,9 +59,9 @@ filme-update: Formulário para editar um filme existente.
 
 filme-delete: Confirmação para excluir um filme.
 
-'''🖥️ Views (views.py)'''
+##🖥️ Views (views.py)
 
-🔎 Função Index (Busca de Filmes)
+###🔎 Função Index (Busca de Filmes)
 
 def index(request):
     busca = request.GET.get('filme', '')
@@ -77,7 +83,7 @@ class FilmeListView(ListView):
 
 Exibe a lista de filmes cadastrados no banco de dados.
 
-'''➕ Criar um Novo Filme'''
+###➕ Criar um Novo Filme
 
 class FilmeCreateView(FormView):
     template_name = 'filme_form.html'
@@ -90,7 +96,7 @@ class FilmeCreateView(FormView):
 
 Exibe o formulário para adicionar um novo filme e salva no banco de dados.
 
-'''✏️ Editar um Filme'''
+###✏️ Editar um Filme'''
 
 class FilmeUpdateView(UpdateView):
     model = Filme
@@ -105,7 +111,7 @@ class FilmeUpdateView(UpdateView):
 
 Permite editar os detalhes de um filme existente.
 
-'''🗑️ Excluir um Filme'''
+###🗑️ Excluir um Filme
 
 class FilmeDeleteView(DeleteView):
     model = Filme
@@ -114,7 +120,7 @@ class FilmeDeleteView(DeleteView):
 
 Solicita confirmação antes de excluir um filme.
 
-'''🛢️ Modelo do Banco de Dados (models.py)'''
+##🛢️ Modelo do Banco de Dados (models.py)
 
 from django.db import models
 
@@ -134,5 +140,7 @@ class Filme(models.Model):
 
     def __str__(self):
         return self.titulo
+
+
 
 
